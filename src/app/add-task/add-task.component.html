@@ -1,0 +1,21 @@
+<h3 class="mt-4 align-items-center">Add the Task</h3>
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="container mt-4">
+  <div class="mb-3">
+    <label for="name" class="form-label">Task Name</label>
+    <input type="text" id="name" formControlName="name" class="form-control">
+    <div *ngIf="taskForm.get('name')?.invalid && (taskForm.get('name')?.touched || taskForm.get('name')?.dirty)" class="text-danger mt-1">
+      <div *ngIf="taskForm.get('name')?.errors?.['required']">
+        Task Name is required.
+      </div>
+    </div>
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" id="completed" formControlName="completed" class="form-check-input">
+    <label for="completed" class="form-check-label">Completed</label>
+  </div>
+  <div class="mb-3">
+    <input type="file" (change)="onFileChange($event)" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Add Task</button>
+  <a routerLink="" class="btn btn-secondary ms-2">Back to Task</a>
+</form>
